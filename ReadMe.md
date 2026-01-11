@@ -170,23 +170,7 @@ sudo systemctl start magneto
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-```
 
----
 
-### Key Sections:
-1. **Project Description and Features**: Overview of the bot’s functionality.
-2. **Requirements**: Prerequisites for running the bot.
-3. **Setup Instructions**: Step-by-step guide to set up the bot, including creating the `.env` file, installing dependencies, and running the bot.
-4. **Docker Setup**: Instructions to run both Transmission and the bot using Docker.
-5. **Systemd Service**: Configuration for running the bot as a service.
-6. **Commands**: The available bot commands and their usage.
-7. **Example Usage**: Examples for interacting with the bot.
-8. **License**: MIT License as an example, you can modify this according to your choice.
 
-### Next Steps:
-- Create the GitHub repository for this project and push the files.
-- Update the repository’s URL and make sure to keep your `.env` and sensitive information out of public repositories.
-
-Let me know if you'd like further modifications or additional features in the README!
 
