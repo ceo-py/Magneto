@@ -1,28 +1,31 @@
 # Magneto Discord Torrent Bot
 
-Magneto is a Discord bot that allows users to manage torrents via Transmission RPC directly from Discord. Users can add torrents, list active torrents, delete specific torrents, or delete all torrents through simple commands in Direct Messages (DMs).
+Magneto is a Discord bot designed to allow users to manage torrents via **Transmission RPC** directly from Discord. The bot provides an intuitive interface using buttons, allowing users to add torrents, list active torrents, and remove specific torrents or all torrents. Users can interact with the bot using **modals** for commands that require additional parameters (such as adding a magnet link or removing a torrent by ID).
 
 ## Features
-- **Add Torrent**: Add a torrent by providing a magnet link.
-- **List Torrents**: List all active torrents with their statuses.
-- **Delete Torrent**: Delete a specific torrent by its ID, including the associated local data.
-- **Delete All Torrents**: Delete all active torrents and their local data.
-- **DM Only**: The bot can only process commands through Direct Messages (DMs) to prevent misuse in public channels.
+
+* **Add Torrent**: Add a torrent by providing a magnet link via a modal.
+* **List Torrents**: List all active torrents with their statuses, accessible through a button.
+* **Delete Torrent**: Remove a specific torrent by its ID through a modal.
+* **Delete All Torrents**: Remove all active torrents and their local data using a button.
+* **DM Only**: The bot processes commands exclusively through Direct Messages (DMs) to avoid misuse in public channels.
+* **Interactive Buttons & Modals**: All actions are performed using buttons, with modals used for actions requiring parameters (such as adding a torrent or removing a specific one by ID).
 
 ## Requirements
-- Python 3.8+
-- Discord API Token
-- Transmission (Docker container or local instance)
-- `.env` file with necessary credentials for Transmission and the bot.
+
+* Python 3.8+
+* Discord API Token
+* Transmission (Docker container or local instance)
+* `.env` file with necessary credentials for Transmission and the bot.
 
 ## Setup
 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/magneto.git
+git clone https://github.com/ceo-py/Magneto
 cd magneto
-````
+```
 
 ### 2. Set up the virtual environment
 
@@ -132,45 +135,41 @@ sudo systemctl start magneto
 
 ## Commands
 
-* **`!add <magnet_link>`**: Adds a torrent from the provided magnet link.
-* **`!list`**: Lists all active torrents and their statuses.
-* **`!delete <torrent_id>`**: Deletes the torrent with the specified ID.
-* **`!delete_all`**: Deletes all active torrents and their data.
+**All interactions now use buttons for managing torrents. Modals are used for actions that require additional parameters (e.g., adding or removing torrents by ID).**
 
-### Example Usage
+### Button Commands:
 
-1. **Adding a torrent**:
+1. **Add Torrent**
 
-   ```plaintext
-   !add magnet:?xt=urn:btih:yourmagnetlinkhere
-   ```
-2. **Listing torrents**:
+   * **Action**: Open a modal to add a torrent by providing a magnet link.
+   * **Button**: "Add Torrent"
+   * **Modal**: Users enter the magnet link to add a torrent.
 
-   ```plaintext
-   !list
-   ```
-3. **Deleting a torrent**:
+2. **List Torrents**
 
-   ```plaintext
-   !delete 123
-   ```
-4. **Deleting all torrents**:
+   * **Action**: Lists all active torrents and their statuses in a message.
+   * **Button**: "List Torrents"
 
-   ```plaintext
-   !delete_all
-   ```
+3. **Delete Torrent**
+
+   * **Action**: Open a modal to remove a specific torrent by ID.
+   * **Button**: "Remove Torrent by ID"
+   * **Modal**: Users provide the torrent ID to remove a specific torrent.
+
+4. **Delete All Torrents**
+
+   * **Action**: Delete all active torrents and their local data.
+   * **Button**: "Delete All Torrents"
 
 ## Notes
 
-* The bot **only works in DMs**. It will not process commands in public channels.
-* Make sure your Transmission instance is configured correctly and accessible via the RPC URL.
-* You can add additional functionality, such as monitoring the bot's activity or adding more commands, as needed.
+* **Direct Message Only**: All bot interactions happen in **Direct Messages**. The bot does not respond to commands in public channels.
+* **Transmission RPC**: Make sure your **Transmission instance** is properly configured and accessible via the RPC URL.
+* **Additional Features**: You can extend the bot with more functionality, such as monitoring active torrents, adding more buttons, or integrating other torrent clients.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the Apache-2.0 license file for details.
 
-
-
-
+---
 
