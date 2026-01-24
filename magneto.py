@@ -5,10 +5,6 @@ from discord.ext import commands
 from dotenv import dotenv_values, find_dotenv
 
 CONFIG = dotenv_values(find_dotenv())
-
-# Set up the bot and prefix for commands
-bot = commands.Bot(command_prefix='!', intents=discord.Intents.default())
-
 TOKEN = CONFIG["TOKEN"]
 
 

@@ -1,7 +1,10 @@
 import discord
 from modals.add_modals import AddTorrentModal
-from modals.remove_with_id_torren import RemoveWithIdTorrentModal
+from modals.add_favorite import AddFavoriteModal
+from modals.remove_with_id_torrent import RemoveWithIdTorrentModal
 from utils.transmission import transmission_request
+from view.view_favorites import ListFavorites, RemoveFavorites
+from utils.redis import list_all_torrents_from_redis
 
 status_map = {
     0: "Queued",         # Torrent is queued for download
@@ -79,3 +82,33 @@ class TorrentButtons(discord.ui.View):
                 await button.response.send_message("No torrents to delete.", ephemeral=True)
         except Exception as e:
             await button.response.send_message(f"Error: {str(e)}", ephemeral=True)
+
+
+    @discord.ui.button(
+        label="View Favorites",
+        style=discord.ButtonStyle.green,
+        custom_id="5",
+        emoji="<:list:1461116766146269254>",
+    )
+    async def favorite_torrents(self, button: discord.ui.Button, interaction: discord.Interaction):
+        torrents = list_all_torrents_from_redis()
+        await button.response.send_message(view=ListFavorites(torrents), ephemeral=True)
+
+    @discord.ui.button(
+        label="Add to Favorites",
+        style=discord.ButtonStyle.green,
+        custom_id="6",
+        emoji="<:add:1461116744398540863>",
+    )
+    async def add_favorite_torrents(self, button: discord.ui.Button, interaction: discord.Interaction):
+        await button.response.send_modal(AddFavoriteModal())
+
+    @discord.ui.button(
+        label="Remove from Favorites",
+        style=discord.ButtonStyle.red,
+        custom_id="7",
+        emoji="<:remove_all:1461116701650321438>",
+    )
+    async def remove_favorite_torrents(self, button: discord.ui.Button, interaction: discord.Interaction):
+        torrents = list_all_torrents_from_redis()
+        await button.response.send_message(view=RemoveFavorites(torrents), ephemeral=True)

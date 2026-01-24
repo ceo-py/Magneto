@@ -1,5 +1,5 @@
 import discord
-from utils.transmission import transmission_request
+from utils.add_torrent import add_torrent
 
 class AddTorrentModal(discord.ui.Modal, title="Add torrent to download"):
     magnet_link = discord.ui.TextInput(
@@ -11,14 +11,4 @@ class AddTorrentModal(discord.ui.Modal, title="Add torrent to download"):
         super().__init__()
 
     async def on_submit(self, interaction: discord.Interaction):
-        try:
-            magnet_link = self.magnet_link.value.strip()
-            params = {"filename": magnet_link}
-            response = transmission_request("torrent-add", params)
-
-            if response.get("result") == "success":
-                await interaction.response.send_message("Successfully added torrent", ephemeral=True)
-            else:
-                await interaction.response.send_message("Failed to add torrent.", ephemeral=True)
-        except Exception as e:
-            await interaction.response.send_message(f"Error: {str(e)}", ephemeral=True)
+        await add_torrent(self.magnet_link.value, interaction)
